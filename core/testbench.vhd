@@ -79,7 +79,7 @@ architecture RTL of coretestbench is
 	signal gpio_input : std_logic_vector(31 downto 0);
 	signal gpio_output : std_logic_vector(31 downto 0);
 
-    
+
 	signal interrupts : std_logic_vector(31 downto 0);
 
 	signal ddata_r_timer : std_logic_vector(31 downto 0);
@@ -87,7 +87,7 @@ architecture RTL of coretestbench is
 	signal ddata_r_periph : std_logic_vector(31 downto 0);
 
 	signal interrupts_combo : std_logic_vector(31 downto 0);
-    
+
 
 begin
 
@@ -141,8 +141,8 @@ begin
 
 		wait;
 	end process interrupt_generate;
-    
-    
+
+
 	reset : process is
 	begin
 		rst <= '1';
@@ -277,7 +277,7 @@ begin
 		output   => gpio_output
 	);
 
-				   
+
 	-- timer instantiation
 	timer : entity work.Timer
 	generic map(
@@ -296,7 +296,7 @@ begin
 	    dmask    => dmask,
 	    timer_interrupt=>timer_interrupt
 	);
-		
+
 
 	-- Connect gpio data to output hardware
 	LEDR  <= gpio_output(9 downto 0);
@@ -312,10 +312,10 @@ begin
 	-- Connect input hardware to gpio data
 	gpio_input <= (others => '0'), x"00000010" after 600000 ns;
 
-	-- FileOutput DEBUG	
+	-- FileOutput DEBUG
 	debug : entity work.trace_debug
 	generic map(
-		EMORY_WORDS => IMEMORY_WORDS
+		MEMORY_WORDS => IMEMORY_WORDS
 	)
 	port map(
 		pc   => iaddress,
